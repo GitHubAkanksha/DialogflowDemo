@@ -65,16 +65,19 @@ restService.post("/moviesworld", function(req, res) {
 		speech = 'Something went wrong! Please try again later.'
 		return console.log('Error while trying to retrieve values', err);
 	}
-	console.log(result);
-	speech = result;
+	else {
+		console.log(result);
+		speech = result;
+		return res.json({
+			speech: speech,
+			displayText: speech,
+			source: "webhook-moviesworld-sample"
+		  });
+	}	
   });
 
 
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-moviesworld-sample"
-  });
+  
 });
 
 restService.listen(process.env.PORT || 8000, function() {
