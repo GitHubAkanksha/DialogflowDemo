@@ -38,7 +38,7 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/moviesworld", function(req, res) {
-  var speech = '';
+  var speech = 'This is a test from the web service!';
 
   var actionName = 
     req.body.result &&
@@ -62,9 +62,11 @@ restService.post("/moviesworld", function(req, res) {
 
   extractJSON(options, function(err, result){
 	if(err){
+		speech = 'Something went wrong! Please try again later.'
 		return console.log('Error while trying to retrieve values', err);
 	}
 	console.log(result);
+	speech = result;
   });
 
 
