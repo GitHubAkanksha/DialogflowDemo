@@ -53,7 +53,7 @@ restService.post("/moviesworld", function(req, res) {
       ? req.body.result.parameters.moviename
       : "Seems like some problem. Tell me again.";
   
-  speech += actionName + movieName;
+  //speech += actionName + movieName;
 
   var options = {
 		host: 'www.omdbapi.com',
@@ -64,16 +64,19 @@ restService.post("/moviesworld", function(req, res) {
 
   extractJSON(options, function(err, result){
 	if(err){
-		speech = 'Something went wrong! Please try again later.'
+		//speech = 'Something went wrong! Please try again later.'
+		console.log("Error occurred while calling Movie API.", err)
+		/*
 		return res.json({
 			speech: speech,
 			displayText: speech,
 			source: "webhook-moviesworld-sample"
 		  });
+		  */
 	}
 	else {
 		// console.log(result);
-		speech = result;
+		//speech = result;
 		/*
 		return res.json({
 			speech: speech,
