@@ -52,6 +52,8 @@ restService.post("/moviesworld", function(req, res) {
     req.body.result.parameters.moviename
       ? req.body.result.parameters.moviename
       : "Seems like some problem. Tell me again.";
+  
+  speech += actionName + movieName;
 
   var options = {
 		host: 'www.omdbapi.com',
@@ -72,16 +74,21 @@ restService.post("/moviesworld", function(req, res) {
 	else {
 		// console.log(result);
 		speech = result;
+		/*
 		return res.json({
 			speech: speech,
 			displayText: speech,
 			source: "webhook-moviesworld-sample"
 		  });
+		  */
 	}	
   });
-
-
   
+  return res.json({
+			speech: speech,
+			displayText: speech,
+			source: "webhook-moviesworld-sample"
+		  });
 });
 
 restService.listen(process.env.PORT || 8000, function() {
