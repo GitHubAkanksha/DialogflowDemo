@@ -54,7 +54,7 @@ restService.post("/moviesworld", function(req, res) {
       : "Seems like some problem. Tell me again.";
 
   var options = {
-		host: 'http://www.omdbapi.com',
+		host: 'www.omdbapi.com',
 		port: 8080,
 		path: '/?apikey=44269ab5&t=' + movieName,
 		method: 'GET'
@@ -63,10 +63,14 @@ restService.post("/moviesworld", function(req, res) {
   extractJSON(options, function(err, result){
 	if(err){
 		speech = 'Something went wrong! Please try again later.'
-		return console.log('Error while trying to retrieve values', err);
+		return res.json({
+			speech: speech,
+			displayText: speech,
+			source: "webhook-moviesworld-sample"
+		  });
 	}
 	else {
-		console.log(result);
+		// console.log(result);
 		speech = result;
 		return res.json({
 			speech: speech,
