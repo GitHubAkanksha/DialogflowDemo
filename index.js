@@ -20,7 +20,8 @@ function extractJSON(reqURL, callback){
 	  });
 
 	  res.on("end", () => {
-		var response = JSON.parse(body);		
+		var response = JSON.parse(body);
+		callback(null, response)
 	  });
 
 	  res.on('error', callback);
@@ -70,10 +71,12 @@ restService.post("/moviesworld", function(req, res) {
 	extractJSON(URL, function(err, result){
 		if(err){
 			speech = 'Something went wrong! Please try again later.';
+			return speech;
 		}
 		else
 		{
-			speech = URL;
+			speech = result;
+			return speech;
 		}
 
 		return res.json({
