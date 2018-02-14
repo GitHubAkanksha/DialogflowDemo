@@ -54,44 +54,12 @@ restService.post("/moviesworld", function(req, res) {
       : "Seems like some problem. Tell me again.";
   
   //speech += actionName + movieName;
-
-  var options = {
-		host: 'www.omdbapi.com',
-		port: 8080,
-		path: '/?apikey=44269ab5&t=' + movieName,
-		method: 'GET'
-  };
-
-  extractJSON(options, function(err, result){
-	if(err){
-		//speech = 'Something went wrong! Please try again later.'
-		console.log("Error occurred while calling Movie API.", err)
-		/*
-		return res.json({
-			speech: speech,
-			displayText: speech,
-			source: "webhook-moviesworld-sample"
-		  });
-		  */
-	}
-	else {
-		// console.log(result);
-		//speech = result;
-		/*
-		return res.json({
-			speech: speech,
-			displayText: speech,
-			source: "webhook-moviesworld-sample"
-		  });
-		  */
-	}	
-  });
   
   return res.json({
-			speech: speech,
-			displayText: speech,
-			source: "webhook-moviesworld-sample"
-		  });
+    speech: speech,
+    displayText: speech,
+    source: "webhook-moviesworld-sample"
+  });
 });
 
 restService.listen(process.env.PORT || 8000, function() {
