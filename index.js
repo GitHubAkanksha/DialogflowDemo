@@ -57,17 +57,23 @@ restService.post("/moviesworld", function(req, res) {
 
   if(actionName == "get.movieinfo"){
 	speech = "You want to know about movie " + movieName + ". Is that correct?";
+
+	return res.json({
+		speech: speech,
+		displayText: speech,
+		source: "webhook-moviesworld-sample"
+	});
   }
   else
   {
 	speech = "You have chosen something else";
-  }
-  
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-moviesworld-sample"
-  });
+
+	return res.json({
+		speech: speech,
+		displayText: speech,
+		source: "webhook-moviesworld-sample"
+	});
+  }    
 });
 
 restService.listen(process.env.PORT || 8000, function() {
