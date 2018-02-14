@@ -53,7 +53,15 @@ restService.post("/moviesworld", function(req, res) {
       ? req.body.result.parameters.moviename
       : "Seems like some problem. Tell me again.";
   
-  speech += actionName + movieName;
+  //speech += actionName + movieName;
+
+  if(actionName == "get.movieinfo"){
+	speech = "You want to know about movie " + movieName + ". Is that correct?";
+  }
+  else
+  {
+	speech = "You have chosen something else";
+  }
   
   return res.json({
     speech: speech,
