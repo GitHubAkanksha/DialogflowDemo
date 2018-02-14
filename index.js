@@ -65,7 +65,7 @@ restService.post("/moviesworld", function(req, res) {
 		method: 'GET'
 	};
 
-	var URL = "http://www.omdbapi.com/?apikey=44269ab5&t=frozen"
+	var URL = "http://www.omdbapi.com/?apikey=44269ab5&t=\'" + movieName + "\'"
 
 	extractJSON(URL, function(err, result){
 		if(err){
@@ -73,7 +73,7 @@ restService.post("/moviesworld", function(req, res) {
 		}
 		else
 		{
-			speech = result;
+			speech = URL;
 		}
 
 		return res.json({
