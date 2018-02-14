@@ -7,23 +7,23 @@ const bodyParser = require("body-parser");
 
 const restService = express();
 
-var http = require('http');
+const http = require("http");
 
-function extractJSON(reqURL, callback){
-	http.get(reqURL, (resp) =>{
-		let body = '';
+function extractJSON(reqURL, callback){	
+	http.get(reqURL, res => {
 
-		resp.on('data', (chunk) => {
-			body += chunk;
-		});
+	  res.setEncoding("utf8");
+	  let body = "";
 
-		rrespes.on('end', () => {
-			var response = JSON.parse(body);
-			//console.log(result);
-			callback(null, response);
-		});
+	  res.on("data", data => {
+		body += data;
+	  });
 
-		resp.on('error', callback);
+	  res.on("end", () => {
+		var response = JSON.parse(body);		
+	  });
+
+	  res.on('error', callback);
 	})
 	.on('error', callback)
 	.end();
