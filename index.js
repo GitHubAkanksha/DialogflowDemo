@@ -68,6 +68,7 @@ restService.post("/moviesworld", function(req, res) {
 
 	var URL = "http://www.omdbapi.com/?apikey=44269ab5&t=frozen"
 
+	/*
 	extractJSON(URL, function(err, result){
 		if(err){
 			speech = 'Something went wrong! Please try again later.';		
@@ -79,6 +80,8 @@ restService.post("/moviesworld", function(req, res) {
 			return speech;
 		}		
 	});
+	*/
+	speech = "When the newly-crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather condition";
 	
 	return res.json({
 				speech: speech,
