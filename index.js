@@ -82,7 +82,7 @@ restService.post("/moviesworld", function(req, res) {
 			source: "webhook-moviesworld-sample"
 		});
   }
-  else
+  else if(actionName == "get.movieactors")
   {
 	speech = "You have chosen something else";
 
