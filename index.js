@@ -57,14 +57,7 @@ restService.post("/moviesworld", function(req, res) {
   //speech += actionName + movieName;
 
   if(actionName == "get.movieinfo"){
-	speech = "You want to know about movie " + movieName + ". Is that correct?";
-
-	var options = {
-		host: 'www.omdbapi.com',
-		port: 8080,
-		path: '/?apikey=44269ab5&t=' + movieName,
-		method: 'GET'
-	};
+	speech = "You want to know about movie " + movieName + ". Is that correct?";	
 
 	var URL = "http://www.omdbapi.com/?apikey=44269ab5&t=frozen"
 
@@ -81,13 +74,13 @@ restService.post("/moviesworld", function(req, res) {
 		}		
 	});
 	*/
-	speech = "When the newly-crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather condition";
+	//speech = "When the newly-crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather condition";
 	
 	return res.json({
-				speech: speech,
-				displayText: speech,
-				source: "webhook-moviesworld-sample"
-			});
+			speech: speech,
+			displayText: speech,
+			source: "webhook-moviesworld-sample"
+		});
   }
   else
   {
