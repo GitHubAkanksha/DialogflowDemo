@@ -9,21 +9,21 @@ const restService = express();
 
 var http = require('http');
 
-function extractJSON(options, callback){
-	http.request(options, function(res){
-		var body = '';
+function extractJSON(reqURL, callback){
+	http.get(reqURL, (resp) =>{
+		let body = '';
 
-		res.on('data', function(chunk){
+		resp.on('data', (chunk) => {
 			body += chunk;
 		});
 
-		res.on('end', function(){
+		rrespes.on('end', () => {
 			var response = JSON.parse(body);
 			//console.log(result);
 			callback(null, response);
 		});
 
-		res.on('error', callback);
+		resp.on('error', callback);
 	})
 	.on('error', callback)
 	.end();
@@ -65,7 +65,9 @@ restService.post("/moviesworld", function(req, res) {
 		method: 'GET'
 	};
 
-	extractJSON(options, function(err, result){
+	var URL = "http://www.omdbapi.com/?apikey=44269ab5&t=frozen"
+
+	extractJSON(URL, function(err, result){
 		if(err){
 			speech = 'Something went wrong! Please try again later.';
 		}
