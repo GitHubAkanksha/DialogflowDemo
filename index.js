@@ -70,21 +70,21 @@ restService.post("/moviesworld", function(req, res) {
 
 	extractJSON(URL, function(err, result){
 		if(err){
-			speech = 'Something went wrong! Please try again later.';
+			speech = 'Something went wrong! Please try again later.';		
 			return speech;
 		}
 		else
 		{
-			speech = result;
+			speech = result;	
 			return speech;
-		}
-
-		return res.json({
-			speech: speech,
-			displayText: speech,
-			source: "webhook-moviesworld-sample"
-		});
-	});	
+		}		
+	});
+	
+	return res.json({
+				speech: speech,
+				displayText: speech,
+				source: "webhook-moviesworld-sample"
+			});
   }
   else
   {
