@@ -38,7 +38,7 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/moviesworld", function(req, res) {
-  var speech = 'This is a test from the web service!';
+  var speech = '';
 
   var actionName = 
     req.body.result &&
@@ -58,11 +58,28 @@ restService.post("/moviesworld", function(req, res) {
   if(actionName == "get.movieinfo"){
 	speech = "You want to know about movie " + movieName + ". Is that correct?";
 
-	return res.json({
-		speech: speech,
-		displayText: speech,
-		source: "webhook-moviesworld-sample"
-	});
+	var options = {
+		host: 'www.omdbapi.com',
+		port: 8080,
+		path: '/?apikey=44269ab5&t=' + movieName,
+		method: 'GET'
+	};
+
+	extractJSON(options, function(err, result){
+		if(err){
+			speech = 'Something went wrong! Please try again later.';
+		}
+		else
+		{
+			speech = result;
+		}
+
+		return res.json({
+			speech: speech,
+			displayText: speech,
+			source: "webhook-moviesworld-sample"
+		});
+	});	
   }
   else
   {
